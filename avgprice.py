@@ -1,13 +1,13 @@
-entrada = open('precios.html', 'r') #Archivo con datos de entrada que quiero buscar (es el codigo fuente de la pagina web).
-salida = open('salida.txt', 'w') 	#Archivo de salida que se generara con la lista de datos encontrados
+input = open('prices.html', 'r') #Input File with source code of the ML web page search results.
+output = open('output.txt', 'w') 	#Output File with results
 i = 0
 cont = 1
-prom = 0
+avg = 0
 acum = 0
-precio = 0
+price = 0
 
-#For each line in file "entrada"
-for line in entrada:
+#For each line in file "input"
+for line in input:
 	#Put the line in variable "e"
 	e = line
 	
@@ -22,11 +22,11 @@ for line in entrada:
 			print ("s:" + s)
 			cont = cont+1
 			#Get the price of the substr in 's'
-			precio = s[18 : 18 + 7]
-			print ("precio:" + precio)
-			precio = eval(precio)
-			acum = acum + precio
-			salida.write(s + '\n') 
+			price = s[18 : 18 + 7]
+			print ("price:" + price)
+			price = eval(price)
+			acum = acum + price
+			output.write(s + '\n') 
 			e = e[ (i + len(s)) : len(e)]
 			i = e.find('price__fraction')
 			s = e[ i : i + 25]
@@ -36,8 +36,8 @@ for line in entrada:
 	s = ''
 	i = 0
 
-#Calculo precio promedio
+#Get average price
 if (cont != 0):
-	prom = acum/cont
-print ("Precio promedio: " + str(prom))
-salida.write('Precio promedio: ' + str(prom))
+	avg = acum/cont
+print ("Average price: " + str(avg))
+output.write('Average price: ' + str(avg))
